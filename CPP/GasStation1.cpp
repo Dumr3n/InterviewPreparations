@@ -5,25 +5,23 @@
 using namespace std;
 
 int canCompleteCircuit(vector<int>& gas, vector<int>& cost) {
-    int currentTank = 0;
-    bool exitFlag=false;
+    int totalGas = 0, totalCost = 0;
+    for (auto& i : gas)
+        totalGas += i;
+    for (auto& i : cost)
+        totalCost += i;
+    if (totalGas < totalCost)
+        return -1;
+
+    int currentGas = 0, start = 0;
     for (int i = 0; i < gas.size(); i++) {
-        currentTank = gas[i];
-        exitFlag = false;
-        for (int j = 0; j < gas.size(); j++) {
-            int currentIndex = (i + j) % gas.size();
-            currentTank -= cost[currentIndex];
-            if (currentTank < 0) {
-                exitFlag = true;
-                break;
-            }
-            currentTank += gas[(currentIndex+1)%gas.size()];
+        currentGas += gas[i] - cost[i];
+        if (currentGas < 0) {
+            currentGas = 0;
+            start = i + 1;
         }
-        if (!exitFlag)
-            return i;
     }
-    
-    return -1;
+    return start;
 }
 
 int main()
