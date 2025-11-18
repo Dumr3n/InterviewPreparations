@@ -19,6 +19,7 @@ int longestConsecutive(vector<int>& nums) {
             currLen++;
         } else {
             maxLen = max(currLen, maxLen);
+            currLen = 1;
         }
         currI = *it;
         it++;
