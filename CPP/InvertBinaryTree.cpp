@@ -22,24 +22,24 @@ TreeNode* invertTree(TreeNode* root) {
     return root;
 }
 
-void InOrderPrint(TreeNode* root) {
+void PreOrderPrint(TreeNode* root) {
     if (!root) {
         return;
     }
     cout << root->val << " ";
-    InOrderPrint(root->left);
-    InOrderPrint(root->right);
+    PreOrderPrint(root->left);
+    PreOrderPrint(root->right);
 }
 
 int main()
 {
     TreeNode* root = new TreeNode(3, new TreeNode(9), new TreeNode(20, new TreeNode(15), new TreeNode(7)));
     cout << "Before was ";
-    InOrderPrint(root);
+    PreOrderPrint(root);
     cout << endl;
     root = invertTree(root);
     cout << "Ans is ";
-    InOrderPrint(root);
+    PreOrderPrint(root);
     cout << endl;
     return 0;
 }

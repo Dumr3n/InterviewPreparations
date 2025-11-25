@@ -26,20 +26,20 @@ bool isSymmetric(TreeNode* root) {
     return isMirror(root->left, root->right);
 }
 
-void InOrderPrint(TreeNode* root) {
+void PreOrderPrint(TreeNode* root) {
     if (!root) {
         return;
     }
     cout << root->val << " ";
-    InOrderPrint(root->left);
-    InOrderPrint(root->right);
+    PreOrderPrint(root->left);
+    PreOrderPrint(root->right);
 }
 
 int main()
 {
     TreeNode* root = new TreeNode(1, new TreeNode(2, new TreeNode(3), new TreeNode(4)), new TreeNode(2, new TreeNode(4), new TreeNode(3)));
     cout << "Before was ";
-    InOrderPrint(root);
+    PreOrderPrint(root);
     cout << endl;
     cout << "Ans is " << boolalpha << isSymmetric(root) << endl;
     return 0;
