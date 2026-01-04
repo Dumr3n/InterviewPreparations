@@ -3,6 +3,7 @@
 #include <iostream>
 #include <sstream>
 #include <fstream>
+#include <filesystem>
 
 #define BUFFSIZE 512
 
@@ -64,6 +65,7 @@ int main() {
 
     vShaderFile.exceptions(std::ifstream::failbit | std::ifstream::badbit);
     fShaderFile.exceptions(std::ifstream::failbit | std::ifstream::badbit);
+    std::cout << std::filesystem::current_path() << std::endl;
 
     try {
         vShaderFile.open("shader.vert");
