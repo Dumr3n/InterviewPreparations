@@ -1,0 +1,4 @@
+.vscode
+build/
+OpenGL/glad/
+.DS_Store

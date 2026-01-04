@@ -68,8 +68,8 @@ int main() {
     std::cout << std::filesystem::current_path() << std::endl;
 
     try {
-        vShaderFile.open("shader.vert");
-        fShaderFile.open("shader.frag");
+        vShaderFile.open(RESOURCES_PATH+"shader.vert");
+        fShaderFile.open(RESOURCES_PATH+"shader.frag");
         std::stringstream vShaderStream, fShaderStream;
         vShaderStream << vShaderFile.rdbuf();
         fShaderStream << fShaderFile.rdbuf();

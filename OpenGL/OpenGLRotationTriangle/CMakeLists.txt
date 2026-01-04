@@ -14,6 +14,8 @@ set(GLAD_SOURCE "${CMAKE_CURRENT_SOURCE_DIR}/../glad/src/glad.c")
 
 add_executable(RotationTriangle main.cpp ${GLAD_SOURCE})
 
+target_compile_definitions("${CMAKE_PROJECT_NAME}" PUBLIC RESOURCES_PATH="./res/")
+
 target_include_directories(RotationTriangle PRIVATE 
     ${CMAKE_CURRENT_SOURCE_DIR} 
     ${GLAD_INCLUDE_DIR}
@@ -29,13 +31,11 @@ file(GLOB SHADERS
     "${CMAKE_CURRENT_SOURCE_DIR}/*.frag"
 )
 
-foreach(shader ${SHADERS})
-    add_custom_command(TARGET RotationTriangle POST_BUILD
-        COMMAND ${CMAKE_COMMAND} -E copy_if_different
-        ${shader}
-        $<TARGET_FILE_DIR:RotationTriangle>
-    )
-endforeach()
+add_custom_command(TARGET RotationTriangle POST_BUILD
+    COMMAND ${CMAKE_COMMAND} -E copy_directory_if_different
+        "${CMAKE_CURRENT_SOURCE_DIR}/res" 
+        "$<TARGET_FILE_DIR:RotationTriangle>/res"
+)
 
 if(APPLE)
     target_link_libraries(RotationTriangle PRIVATE "-framework CoreFoundation")
